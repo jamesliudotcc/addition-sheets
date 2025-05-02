@@ -1,43 +1,36 @@
 import React from 'react';
+import { PLUS_SIGN, MINUS_SIGN, MULTIPLICATION_SIGN } from '../constants';
+import AdditionOrSubtraction from './AdditionOrSubtraction';
+import Multiplication from './Multiplication';
 
 interface ProblemProps {
-  problem: string;
+  operation?: typeof PLUS_SIGN | typeof MINUS_SIGN | typeof MULTIPLICATION_SIGN;
 }
 
-const Problem: React.FC<ProblemProps> = ({ problem }) => {
-  // Validate that the problem prop is exactly 6 characters
-  if (problem.length !== 6) {
-    throw new Error('Problem prop must be exactly 6 characters long');
-  }
+const generateProblem = (): string[] => {
+  const firstNum = Math.floor(Math.random() * 999) + 1;
+  const secondNum = Math.floor(Math.random() * 999) + 1;
+  return [firstNum, secondNum]
+    .sort((a, b) => b - a)
+    .map(num => num.toString().padStart(3, ' '));
+}
 
-  // Split the problem into first three and last three digits
-  const firstRow = problem.slice(0, 3);
-  const secondRow = problem.slice(3, 6);
+const Problem: React.FC<ProblemProps> = ({ operation = PLUS_SIGN }) => {
+  // Generate two sorted numbers
+  const [firstRow, secondRow] = generateProblem();
 
-  return (
-    <article className="problem">
-      <table>
-        <tbody>
-          <tr>
-            <td> </td>
-            {firstRow.split('').map((digit, index) => (
-              <td key={`first-${index}`}>{digit}</td>
-            ))}
-          </tr>
-          <tr className="addition-row">
-            <td>+</td>
-            {secondRow.split('').map((digit, index) => (
-              <td key={`second-${index}`}>{digit}</td>
-            ))}
-          </tr>
-          <tr>
-            {['', '', '', ''].map((_, index) => (
-              <td key={`empty-${index}`}></td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
-    </article>
+  return operation === MULTIPLICATION_SIGN ? (
+    <Multiplication
+      firstRow={firstRow}
+      secondRow={secondRow}
+      operation={MULTIPLICATION_SIGN}
+    />
+  ) : (
+    <AdditionOrSubtraction
+      firstRow={firstRow}
+      secondRow={secondRow}
+      operation={operation as typeof PLUS_SIGN | typeof MINUS_SIGN}
+    />
   );
 };
 

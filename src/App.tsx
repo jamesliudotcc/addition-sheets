@@ -1,18 +1,13 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import './App.css'
 import Problem from './components/Problem'
+import { PLUS_SIGN, MINUS_SIGN, MULTIPLICATION_SIGN } from './constants'
 
 function App() {
-  const generateProblems = () => 
-    Array.from({ length: 12 }, () => 
-      Math.floor(Math.random() * 1000000).toString().padStart(6, '0')
-    );
+  const [operation, setOperation] = useState<typeof PLUS_SIGN | typeof MINUS_SIGN | typeof MULTIPLICATION_SIGN>(PLUS_SIGN)
 
-  const [problems, setProblems] = useState<string[]>(generateProblems);
-
-  const regenerateProblems = () => {
-    setProblems(generateProblems());
+  const handleOperationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setOperation(event.target.value as typeof PLUS_SIGN | typeof MINUS_SIGN | typeof MULTIPLICATION_SIGN);
   };
 
   const handlePrint = () => {
@@ -22,18 +17,23 @@ function App() {
   return (
     <>
       <nav>
-        <button onClick={regenerateProblems}>
-          <span aria-hidden="true">🔄</span>
-          <span className="sr-only">Generate New Problems</span>
-        </button>
+        <select 
+          value={operation} 
+          onChange={handleOperationChange} 
+          aria-label="Select Operation"
+        >
+          <option value={PLUS_SIGN}>+</option>
+          <option value={MINUS_SIGN}>−</option>
+          <option value={MULTIPLICATION_SIGN}>×</option>
+        </select>
         <button onClick={handlePrint}>
           <span aria-hidden="true">🖨️</span>
           <span className="sr-only">Print Problems</span>
         </button>
       </nav>
       <main role="main">
-        {problems.map((problem, index) => (
-          <Problem key={index} problem={problem} />
+        {Array.from({ length: 12 }, (_, index) => (
+          <Problem key={index} operation={operation} />
         ))}
       </main>
     </>

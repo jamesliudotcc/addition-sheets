@@ -1,10 +1,10 @@
 import React from "react";
 
-const DiagonalSVG: React.FC = () => (
+const LongDivisionSVG: React.FC = () => (
   <svg
     width="100%"
     height="100%"
-    viewBox="0 0 32 32"
+    viewBox="0 0 100 40"
     style={{
       position: "absolute",
       left: 0,
@@ -17,8 +17,16 @@ const DiagonalSVG: React.FC = () => (
     aria-hidden="true"
     focusable="false"
   >
-    <line x1="0" y1="32" x2="32" y2="0" stroke="#888" strokeWidth="1" strokeDasharray="2,2" />
+    {/* Horizontal line */}
+    <line x1="0" y1="15" x2="80" y2="15" stroke="#000" strokeWidth="2" />
+    {/* Right parenthesis */}
+    <path 
+      d="M 85 5 Q 95 5 95 15 Q 95 25 85 25" 
+      stroke="#000" 
+      strokeWidth="2" 
+      fill="none"
+    />
   </svg>
 );
 
-export default DiagonalSVG;
+export default LongDivisionSVG;

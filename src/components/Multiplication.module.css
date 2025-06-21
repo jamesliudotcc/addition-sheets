@@ -1,0 +1,56 @@
+/* Multiplication component styles */
+.problem {
+  /* Base problem styles */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+    "d1 d2 d3 ."
+    "lat lat lat d4"
+    "lat lat lat d5"
+    "lat lat lat d6";
+  gap: 0.1rem;
+  max-width: 300px;
+  margin: 0 auto;
+  height: 200px;
+}
+
+.gridCell {
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.digitCell {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+}
+
+.latticeCell {
+  padding: 0;
+  position: relative;
+  border: none;
+}
+
+.emptyCell {
+  border: none;
+  background: none;
+}
+
+/* Print styles */
+@media print {
+  .grid {
+    gap: 0.1rem;
+  }
+
+  .digitCell {
+    font-size: 0.9rem;
+  }
+} 

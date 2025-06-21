@@ -41,6 +41,105 @@
   color: #888;
 }
 
+/* New 4x4 grid layout for multiplication */
+.multiplication-problem .multiplication-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+    "d1 d2 d3 ."
+    "lat lat lat d4"
+    "lat lat lat d5"
+    "lat lat lat d6";
+  gap: 0.25rem;
+  max-width: 300px;
+  margin: 0 auto;
+  height: 200px;
+}
+
+.multiplication-problem .grid-cell {
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.multiplication-problem .digit-cell {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+}
+
+.multiplication-problem .digit-cell:nth-child(1) { grid-area: d1; }
+.multiplication-problem .digit-cell:nth-child(2) { grid-area: d2; }
+.multiplication-problem .digit-cell:nth-child(3) { grid-area: d3; }
+.multiplication-problem .digit-cell:nth-child(5) { grid-area: d4; }
+.multiplication-problem .digit-cell:nth-child(8) { grid-area: d5; }
+.multiplication-problem .digit-cell:nth-child(11) { grid-area: d6; }
+
+.multiplication-problem .lattice-cell {
+  padding: 0;
+  position: relative;
+  border: none;
+}
+
+.multiplication-problem .empty-cell {
+  border: none;
+  background: none;
+}
+
+/* Remove the old position-based styles */
+.multiplication-problem .position-a,
+.multiplication-problem .position-b,
+.multiplication-problem .position-c,
+.multiplication-problem .position-d {
+  /* These styles are no longer needed */
+}
+
+.multiplication-problem .first-multiplicand {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.multiplication-problem .first-multiplicand .digit {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 1rem;
+  text-align: center;
+}
+
+.multiplication-problem .second-multiplicand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.multiplication-problem .second-multiplicand .vertical-digit {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.multiplication-problem .lattice-grid {
+  width: 100%;
+  height: 100%;
+}
+
+.multiplication-problem .lattice-placeholder {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Legacy table styles - keeping for reference but not used in new layout */
 .multiplication-problem table {
   border-collapse: separate;
   border-spacing: 0;

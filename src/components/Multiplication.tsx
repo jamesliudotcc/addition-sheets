@@ -1,6 +1,6 @@
 import React from 'react';
 import { MULTIPLICATION_SIGN } from '../constants';
-import DiagonalSVG from './DiagonalSVG';
+import LatticeSVG from './LatticeSVG';
 
 export interface MultiplicationProps {
   firstRow: string;
@@ -15,28 +15,29 @@ const Multiplication: React.FC<MultiplicationProps> = ({
 }) => {
   // Ensure secondRow is always 3 digits for vertical display
   const secondDigits = secondRow.padStart(3, '0').split('');
+  const firstDigits = firstRow.split('');
+  
   return (
     <article className="problem multiplication-problem">
-      <table>
-        <tbody>
-          {/* First row: firstRow digits, then multiplication sign */}
-          <tr>
-            {firstRow.split('').map((digit, index) => (
-              <td key={`first-${index}`}>{digit}</td>
-            ))}
-            <td className="solid-left">{operation}</td>
-          </tr>
-          {/* Next three rows: only last column has digits from secondRow; first of these gets solid-horizontal on all cells */}
-          {secondDigits.map((digit, idx) => (
-            <tr key={`mult-row-${idx}`}>
-              <td className={(idx === 0 ? "solid-horizontal first-cell diagonal-cell" : "diagonal-cell")}> <DiagonalSVG />&nbsp;</td>
-              <td className={(idx === 0 ? "solid-horizontal diagonal-cell" : "diagonal-cell")}> <DiagonalSVG />&nbsp;</td>
-              <td className={(idx === 0 ? "solid-horizontal diagonal-cell" : "diagonal-cell")}> <DiagonalSVG />&nbsp;</td>
-              <td className={idx === 0 ? "solid-horizontal solid-left" : "solid-left"}>{digit}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="multiplication-grid">
+        {/* Top row: First multiplicand digits */}
+        <div className="grid-cell digit-cell" style={{gridArea: 'd1'}}>{firstDigits[0] || ''}</div>
+        <div className="grid-cell digit-cell" style={{gridArea: 'd2'}}>{firstDigits[1] || ''}</div>
+        <div className="grid-cell digit-cell" style={{gridArea: 'd3'}}>{firstDigits[2] || ''}</div>
+        
+        {/* Lattice grid spans 3x3 in lower left */}
+        <div className="grid-cell lattice-cell" style={{gridArea: 'lat'}}>
+          <LatticeSVG 
+            cellSize={50} 
+            strokeWidth={1.5}
+          />
+        </div>
+        
+        {/* Right column: Second multiplicand digits */}
+        <div className="grid-cell digit-cell" style={{gridArea: 'd4'}}>{secondDigits[0] || ''}</div>
+        <div className="grid-cell digit-cell" style={{gridArea: 'd5'}}>{secondDigits[1] || ''}</div>
+        <div className="grid-cell digit-cell" style={{gridArea: 'd6'}}>{secondDigits[2] || ''}</div>
+      </div>
     </article>
   );
 };

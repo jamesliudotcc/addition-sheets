@@ -1,5 +1,6 @@
 import type React from "react";
-import LongDivisionSVG from "./DiagonalSVG";
+import DivisionBracket from "./DivisionBracket";
+import styles from "./Division.module.css";
 
 interface DivisionProps {
 	dividend: string;
@@ -8,39 +9,14 @@ interface DivisionProps {
 
 const Division: React.FC<DivisionProps> = ({ dividend, divisor }) => {
 	return (
-		<article
-			style={{ position: "relative", display: "inline-block", margin: "10px" }}
-		>
-			{/* Long division symbol */}
-			<LongDivisionSVG />
-
-			{/* Dividend positioned underneath the horizontal line */}
-			<main
-				style={{
-					position: "absolute",
-					left: "10px",
-					top: "20px",
-					fontSize: "16px",
-					fontFamily: "monospace",
-					zIndex: 2,
-				}}
-			>
-				{dividend}
-			</main>
-
-			{/* Divisor positioned to the left of the parenthesis */}
-			<aside
-				style={{
-					position: "absolute",
-					left: "90px",
-					top: "5px",
-					fontSize: "16px",
-					fontFamily: "monospace",
-					zIndex: 2,
-				}}
-			>
-				{divisor}
-			</aside>
+		<article className={`problem division-problem ${styles.problem}`}>
+			<div className={styles.grid}>
+				<div className={styles.bracket}>
+					<DivisionBracket />
+				</div>
+				<div className={styles.dividend}>{dividend}</div>
+				<aside className={styles.divisor}>{divisor}</aside>
+			</div>
 		</article>
 	);
 };

@@ -1,0 +1,15 @@
+.bracketStroke {
+  stroke: #0f172a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bracketStroke {
+    stroke: #f8fafc;
+  }
+}
+
+@media print {
+  .bracketStroke {
+    stroke: #000;
+  }
+}

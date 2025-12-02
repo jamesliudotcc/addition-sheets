@@ -1,0 +1,63 @@
+/* Division component laid out on a 3x3 grid */
+.problem {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.grid {
+	display: grid;
+	grid-template-areas:
+		"A B C"
+		"D E F"
+		". . .";
+	grid-template-columns: 1fr 0.2fr 0.2fr;
+	grid-template-rows: auto auto 1fr;
+	gap: 0.25rem;
+	padding-top: 0.5rem;
+	align-items: center;
+	justify-items: center;
+	width: 100%;
+	max-width: 18em;
+}
+
+.bracket {
+	grid-column: 2 / 4;
+	grid-row: 1 / 3;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.bracket svg {
+	width: 100%;
+	height: auto;
+}
+
+.dividend {
+	grid-area: F;
+	font-size: 1.4rem;
+	font-weight: bold;
+	justify-self: center;
+	z-index: 1;
+}
+
+.divisor {
+	grid-area: D;
+	font-size: 1.4rem;
+	font-weight: bold;
+	justify-self: center;
+}
+
+@media print {
+	.grid {
+		gap: 0.1rem;
+		padding-top: 0.25rem;
+	}
+
+	.dividend,
+	.divisor {
+		font-size: 1rem;
+	}
+}

@@ -102,14 +102,6 @@
     background: none;
 }
 
-/* Remove the old position-based styles */
-.multiplication-problem .position-a,
-.multiplication-problem .position-b,
-.multiplication-problem .position-c,
-.multiplication-problem .position-d {
-    /* These styles are no longer needed */
-}
-
 .multiplication-problem .first-multiplicand {
     display: flex;
     gap: 0.25rem;
@@ -149,11 +141,6 @@
     font-style: italic;
     text-align: center;
     padding: 1rem;
-}
-
-/* General problem styles - specific component styles moved to modules */
-.problem {
-    /* Base problem styles */
 }
 
 .operation-nav {

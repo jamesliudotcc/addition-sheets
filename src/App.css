@@ -232,35 +232,4 @@
 	letter-spacing: 0.02em;
 }
 
-/* Legacy table styles - keeping for reference but not used in new layout */
-.multiplication-problem table {
-	border-collapse: separate;
-	border-spacing: 0;
-}
 
-.multiplication-problem td {
-	border: 1px dotted #888;
-	width: 2em;
-	height: 2em;
-	text-align: center;
-	font-size: 1.5em;
-	box-sizing: border-box;
-}
-
-.multiplication-problem td.diagonal-cell {
-	position: relative;
-	background: none;
-}
-
-.multiplication-problem td.solid-left {
-	border-left: 2px solid #222 !important;
-}
-
-.multiplication-problem .solid-horizontal {
-	border-top: 2px solid #222 !important;
-}
-
-.multiplication-problem .solid-horizontal.first-cell {
-	/* Compensate for the border so row height matches others */
-	height: calc(2em + 2px);
-}

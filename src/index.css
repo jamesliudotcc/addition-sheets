@@ -134,34 +134,6 @@ button:focus-visible {
 		align-content: stretch;
 	}
 
-	.problem-row {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-		gap: 0.5cm;
-	}
-
-	.problem {
-		break-inside: avoid;
-		page-break-inside: avoid;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.multiplication-problem .multiplication-grid {
-		max-width: 15em;
-		height: 8em;
-		gap: 0.1rem;
-	}
-
-	.multiplication-problem .digit-cell {
-		font-size: 0.9rem;
-	}
-
 	.problem table {
 		width: 95%;
 		border-collapse: collapse;
@@ -177,35 +149,6 @@ button:focus-visible {
 		text-align: center;
 		vertical-align: middle;
 	}
-}
-
-nav {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 1rem;
-}
-
-nav button {
-	background-color: #646cff;
-	color: white;
-	border: none;
-	padding: 0.75rem 1.5rem;
-	border-radius: 8px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-	margin: 0 0.5rem;
-}
-
-nav button:hover {
-	background-color: #535bf2;
-}
-
-nav button:last-child {
-	background-color: #4caf50;
-}
-
-nav button:last-child:hover {
-	background-color: #45a049;
 }
 
 @media (prefers-color-scheme: light) {

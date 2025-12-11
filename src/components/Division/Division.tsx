@@ -1,6 +1,6 @@
 import type React from "react";
-import DivisionBracket from "./DivisionBracket";
 import styles from "./Division.module.css";
+import DivisionBracket from "./DivisionBracket";
 
 interface DivisionProps {
 	dividend: string;

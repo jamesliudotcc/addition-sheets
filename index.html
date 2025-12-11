@@ -14,5 +14,19 @@
     <body>
         <div id="root"></div>
         <script src="main.js"></script>
+        <script>
+            // Lightweight SSE-based reload for the custom dev server
+            if (
+                location.hostname === "127.0.0.1" ||
+                location.hostname === "localhost"
+            ) {
+                const evt = new EventSource("/dev-hmr");
+                evt.onmessage = (event) => {
+                    if (event.data === "reload") {
+                        location.reload();
+                    }
+                };
+            }
+        </script>
     </body>
 </html>

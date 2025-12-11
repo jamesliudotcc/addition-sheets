@@ -5,9 +5,9 @@ import {
 	MULTIPLICATION_SIGN,
 	PLUS_SIGN,
 } from "../constants";
-import AdditionOrSubtraction from "./AdditionOrSubtraction";
-import Division from "./Division";
-import Multiplication from "./Multiplication";
+import AdditionOrSubtraction from "./AdditionOrSubtraction/AdditionOrSubtraction";
+import Division from "./Division/Division";
+import Multiplication from "./Multiplication/Multiplication";
 
 interface ProblemProps {
 	operation?:

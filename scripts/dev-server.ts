@@ -16,6 +16,20 @@ const copyStatic = () => {
   log("Static assets copied");
 };
 
+const eventControllers = new Set<ReadableStreamDefaultController<Uint8Array>>();
+const encoder = new TextEncoder();
+
+const notifyReload = () => {
+  const payload = encoder.encode("data: reload\n\n");
+  for (const controller of eventControllers) {
+    try {
+      controller.enqueue(payload);
+    } catch (error) {
+      console.error("Failed to enqueue reload event", error);
+    }
+  }
+};
+
 const buildResult = await Bun.build({
   entrypoints: ["src/main.tsx"],
   outdir: DIST_DIR,
@@ -32,6 +46,7 @@ const buildResult = await Bun.build({
       if (result?.success) {
         copyStatic();
         log("Rebuilt");
+        notifyReload();
       }
     },
   },
@@ -46,10 +61,11 @@ copyStatic();
 
 const startServer = () => {
   const preferred = Number(process.env.PORT) || 3000;
-  const maxAttempts = 10;
+  const candidatePorts = Array.from({ length: 10 }, (_, i) => preferred + i);
+  // Final fallback lets the OS pick an open port so we do not fail when the range is busy.
+  candidatePorts.push(0);
 
-  for (let i = 0; i < maxAttempts; i += 1) {
-    const port = preferred + i;
+  for (const port of candidatePorts) {
     try {
       const srv = Bun.serve({
         port,
@@ -59,6 +75,32 @@ const startServer = () => {
 
           if (url.pathname === "/") {
             return Response.redirect(`${url.origin}/addition`, 302);
+          }
+
+          if (url.pathname === "/dev-hmr") {
+            const { signal } = req;
+            return new Response(
+              new ReadableStream<Uint8Array>({
+                start(controller) {
+                  eventControllers.add(controller);
+                  signal.addEventListener(
+                    "abort",
+                    () => {
+                      eventControllers.delete(controller);
+                    },
+                    { once: true },
+                  );
+                },
+              }),
+              {
+                status: 200,
+                headers: {
+                  "Content-Type": "text/event-stream",
+                  "Cache-Control": "no-cache",
+                  Connection: "keep-alive",
+                },
+              },
+            );
           }
 
           const relativePath =
@@ -96,7 +138,11 @@ const startServer = () => {
       if (error && typeof error === "object" && "code" in error) {
         const code = (error as { code: string }).code;
         if (code === "EADDRINUSE") {
-          log(`Port ${port} in use, trying ${port + 1}...`);
+          log(
+            port === 0
+              ? "Requested ephemeral port but it was unavailable, trying next..."
+              : `Port ${port} in use, trying ${port + 1}...`,
+          );
           continue;
         }
         console.error("Server start error", error);

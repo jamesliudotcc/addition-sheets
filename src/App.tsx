@@ -1,4 +1,4 @@
-import type React from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./App.css";
 import Problem from "./components/Problem";
@@ -22,11 +22,34 @@ interface AppProps {
 const NAV_ITEMS = [
 	{ path: "/addition", label: "Addition", operation: PLUS_SIGN },
 	{ path: "/subtraction", label: "Subtraction", operation: MINUS_SIGN },
-	{ path: "/multiplication", label: "Multiplication", operation: MULTIPLICATION_SIGN },
+	{
+		path: "/multiplication",
+		label: "Multiplication",
+		operation: MULTIPLICATION_SIGN,
+	},
 	{ path: "/division", label: "Division", operation: DIVISION_SIGN },
 ] satisfies Array<{ path: string; label: string; operation: Operation }>;
 
+const createProblemKeys = (seed: string) =>
+	Array.from(
+		{ length: 12 },
+		(index) =>
+			`${seed}-${index}-${
+				globalThis.crypto?.randomUUID?.() ??
+				Math.random().toString(36).slice(2, 10)
+			}`,
+	);
+
 function App({ operation }: AppProps) {
+	const activeNav = NAV_ITEMS.find((item) => item.operation === operation);
+	const [problemKeys, setProblemKeys] = useState(() =>
+		createProblemKeys(operation),
+	);
+
+	useEffect(() => {
+		setProblemKeys(createProblemKeys(operation));
+	}, [operation]);
+
 	const handlePrint = () => {
 		window.print();
 	};
@@ -34,7 +57,11 @@ function App({ operation }: AppProps) {
 	return (
 		<>
 			<nav className="operation-nav">
-				<div className="operation-links" role="tablist" aria-label="Worksheet type">
+				<div
+					className="operation-links"
+					role="tablist"
+					aria-label="Worksheet type"
+				>
 					{NAV_ITEMS.map(({ path, label }) => (
 						<NavLink
 							key={path}
@@ -50,14 +77,22 @@ function App({ operation }: AppProps) {
 						</NavLink>
 					))}
 				</div>
-				<button onClick={handlePrint} className="print-button">
+				<button onClick={handlePrint} className="print-button" type="button">
 					<span aria-hidden="true">🖨️</span>
 					<span className="sr-only">Print Problems</span>
 				</button>
 			</nav>
-			<main role="main">
-				{Array.from({ length: 12 }, (_, index) => (
-					<Problem key={index} operation={operation} />
+			<header className="worksheet-hero">
+				<div className="worksheet-pill">
+					<span aria-hidden="true">{operation}</span>
+					<span className="sr-only">{activeNav?.label ?? "Worksheets"}</span>
+				</div>
+				<h1>{activeNav?.label ?? "Worksheets"} practice sheets</h1>
+				<p>Refresh to generate new problems or print and share.</p>
+			</header>
+			<main>
+				{problemKeys.map((key) => (
+					<Problem key={key} operation={operation} />
 				))}
 			</main>
 		</>

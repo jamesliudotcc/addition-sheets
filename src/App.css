@@ -1,235 +1,266 @@
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
 }
 
 .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+	height: 6em;
+	padding: 1.5em;
+	will-change: filter;
+	transition: filter 300ms;
 }
 .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+	filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+	filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
+	a:nth-of-type(2) .logo {
+		animation: logo-spin infinite 20s linear;
+	}
 }
 
 .card {
-    padding: 2em;
+	padding: 2em;
 }
 
 .read-the-docs {
-    color: #888;
+	color: #888;
 }
 
 /* New 4x4 grid layout for multiplication */
 .multiplication-problem .multiplication-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas:
-        "d1 d2 d3 ."
-        "lat lat lat d4"
-        "lat lat lat d5"
-        "lat lat lat d6";
-    gap: 0.25rem;
-    max-width: 300px;
-    margin: 0 auto;
-    height: 200px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	grid-template-areas:
+		"d1 d2 d3 ."
+		"lat lat lat d4"
+		"lat lat lat d5"
+		"lat lat lat d6";
+	gap: 0.25rem;
+	max-width: 300px;
+	margin: 0 auto;
+	height: 200px;
 }
 
 .multiplication-problem .grid-cell {
-    border: 1px solid #ccc;
-    padding: 0.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	border: 1px solid #ccc;
+	padding: 0.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .multiplication-problem .digit-cell {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    border: none;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-align: center;
+	border: none;
 }
 
 .multiplication-problem .digit-cell:nth-child(1) {
-    grid-area: d1;
+	grid-area: d1;
 }
 .multiplication-problem .digit-cell:nth-child(2) {
-    grid-area: d2;
+	grid-area: d2;
 }
 .multiplication-problem .digit-cell:nth-child(3) {
-    grid-area: d3;
+	grid-area: d3;
 }
 .multiplication-problem .digit-cell:nth-child(5) {
-    grid-area: d4;
+	grid-area: d4;
 }
 .multiplication-problem .digit-cell:nth-child(8) {
-    grid-area: d5;
+	grid-area: d5;
 }
 .multiplication-problem .digit-cell:nth-child(11) {
-    grid-area: d6;
+	grid-area: d6;
 }
 
 .multiplication-problem .lattice-cell {
-    padding: 0;
-    position: relative;
-    border: none;
+	padding: 0;
+	position: relative;
+	border: none;
 }
 
 .multiplication-problem .empty-cell {
-    border: none;
-    background: none;
+	border: none;
+	background: none;
 }
 
 .multiplication-problem .first-multiplicand {
-    display: flex;
-    gap: 0.25rem;
-    margin-bottom: 0.5rem;
+	display: flex;
+	gap: 0.25rem;
+	margin-bottom: 0.5rem;
 }
 
 .multiplication-problem .first-multiplicand .digit {
-    font-size: 1.2rem;
-    font-weight: bold;
-    min-width: 1rem;
-    text-align: center;
+	font-size: 1.2rem;
+	font-weight: bold;
+	min-width: 1rem;
+	text-align: center;
 }
 
 .multiplication-problem .second-multiplicand {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-left: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-left: 0.5rem;
 }
 
 .multiplication-problem .second-multiplicand .vertical-digit {
-    font-size: 1.2rem;
-    font-weight: bold;
-    min-height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	font-size: 1.2rem;
+	font-weight: bold;
+	min-height: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .multiplication-problem .lattice-grid {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .multiplication-problem .lattice-placeholder {
-    color: #888;
-    font-style: italic;
-    text-align: center;
-    padding: 1rem;
+	color: #888;
+	font-style: italic;
+	text-align: center;
+	padding: 1rem;
 }
 
 .operation-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 0.75rem 0;
-    backdrop-filter: blur(6px);
-    background: rgba(246, 248, 250, 0.9);
-    border-bottom: 1px solid #e2e8f0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+	margin-bottom: 1.5rem;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	padding: 0.75rem 0;
+	backdrop-filter: blur(6px);
+	background: rgba(246, 248, 250, 0.9);
+	border-bottom: 1px solid #e2e8f0;
 }
 
 .operation-links {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+	display: flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
 }
 
 .operation-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.55rem 1.1rem;
-    border-radius: 999px;
-    border: 1px solid #d0d7de;
-    background: #f6f8fa;
-    color: #0f172a;
-    font-weight: 600;
-    text-decoration: none;
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.55rem 1.1rem;
+	border-radius: 999px;
+	border: 1px solid #d0d7de;
+	background: #f6f8fa;
+	color: #0f172a;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s
+		ease;
 }
 
 .operation-link:hover {
-    background: #e2e8f0;
+	background: #e2e8f0;
 }
 
 .operation-link.active {
-    background: #2563eb;
-    color: #ffffff;
-    border-color: #2563eb;
+	background: #2563eb;
+	color: #ffffff;
+	border-color: #2563eb;
 }
 
 .print-button {
-    background: #111827;
-    color: #ffffff;
-    border: none;
-    padding: 0.65rem 1.2rem;
-    border-radius: 10px;
-    font-weight: 600;
+	background: #111827;
+	color: #ffffff;
+	border: none;
+	padding: 0.65rem 1.2rem;
+	border-radius: 10px;
+	font-weight: 600;
+}
+
+.worksheet-hero {
+	text-align: left;
+	background: linear-gradient(135deg, #e0f2fe, #e9d5ff);
+	border: 1px solid #d0d7de;
+	border-radius: 16px;
+	padding: 1.25rem 1.5rem;
+	margin-bottom: 1.25rem;
+	box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.worksheet-hero h1 {
+	margin: 0.25rem 0 0.35rem;
+	font-size: 1.6rem;
+	color: #0f172a;
+}
+
+.worksheet-hero p {
+	margin: 0;
+	color: #475569;
+}
+
+.worksheet-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.35rem 0.8rem;
+	border-radius: 999px;
+	background: rgba(37, 99, 235, 0.12);
+	color: #0f172a;
+	font-weight: 700;
+	letter-spacing: 0.02em;
 }
 
 /* Legacy table styles - keeping for reference but not used in new layout */
 .multiplication-problem table {
-    border-collapse: separate;
-    border-spacing: 0;
+	border-collapse: separate;
+	border-spacing: 0;
 }
 
 .multiplication-problem td {
-    border: 1px dotted #888;
-    width: 2em;
-    height: 2em;
-    text-align: center;
-    font-size: 1.5em;
-    box-sizing: border-box;
+	border: 1px dotted #888;
+	width: 2em;
+	height: 2em;
+	text-align: center;
+	font-size: 1.5em;
+	box-sizing: border-box;
 }
 
 .multiplication-problem td.diagonal-cell {
-    position: relative;
-    background: none;
+	position: relative;
+	background: none;
 }
 
 .multiplication-problem td.solid-left {
-    border-left: 2px solid #222 !important;
+	border-left: 2px solid #222 !important;
 }
 
 .multiplication-problem .solid-horizontal {
-    border-top: 2px solid #222 !important;
+	border-top: 2px solid #222 !important;
 }
 
 .multiplication-problem .solid-horizontal.first-cell {
-    /* Compensate for the border so row height matches others */
-    height: calc(2em + 2px);
+	/* Compensate for the border so row height matches others */
+	height: calc(2em + 2px);
 }

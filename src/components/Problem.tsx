@@ -15,6 +15,8 @@ interface ProblemProps {
 		| typeof MINUS_SIGN
 		| typeof MULTIPLICATION_SIGN
 		| typeof DIVISION_SIGN;
+	generateProblemFn?: () => string[];
+	generateDivisionProblemFn?: () => { dividend: string; divisor: string };
 }
 
 // Exported for testability: creates two numbers, sorts descending, and pads to width 3.
@@ -37,14 +39,18 @@ export const generateDivisionProblem = () => {
 	};
 };
 
-const Problem: React.FC<ProblemProps> = ({ operation = PLUS_SIGN }) => {
+const Problem: React.FC<ProblemProps> = ({
+	operation = PLUS_SIGN,
+	generateProblemFn = generateProblem,
+	generateDivisionProblemFn = generateDivisionProblem,
+}) => {
 	// Generate two sorted numbers
 	if (operation === DIVISION_SIGN) {
-		const { dividend, divisor } = generateDivisionProblem();
+		const { dividend, divisor } = generateDivisionProblemFn();
 		return <Division dividend={dividend} divisor={divisor} />;
 	}
 
-	const [firstRow, secondRow] = generateProblem();
+	const [firstRow, secondRow] = generateProblemFn();
 
 	return operation === MULTIPLICATION_SIGN ? (
 		<Multiplication

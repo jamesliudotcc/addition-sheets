@@ -1,5 +1,5 @@
 import type React from "react";
-import type { MULTIPLICATION_SIGN } from "../constants";
+import { MULTIPLICATION_SIGN } from "../constants";
 import LatticeSVG from "./LatticeSVG";
 import styles from "./Multiplication.module.css";
 

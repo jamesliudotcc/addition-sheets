@@ -82,14 +82,6 @@ function App({ operation }: AppProps) {
 					<span className="sr-only">Print Problems</span>
 				</button>
 			</nav>
-			<header className="worksheet-hero">
-				<div className="worksheet-pill">
-					<span aria-hidden="true">{operation}</span>
-					<span className="sr-only">{activeNav?.label ?? "Worksheets"}</span>
-				</div>
-				<h1>{activeNav?.label ?? "Worksheets"} practice sheets</h1>
-				<p>Refresh to generate new problems or print and share.</p>
-			</header>
 			<main>
 				{problemKeys.map((key) => (
 					<Problem key={key} operation={operation} />

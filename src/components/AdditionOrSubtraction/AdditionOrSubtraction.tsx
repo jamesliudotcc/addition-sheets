@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MINUS_SIGN, PLUS_SIGN } from "../constants";
+import type { MINUS_SIGN, PLUS_SIGN } from "../constants";
 
 export interface AdditionOrSubtractionProps {
 	firstRow: string;

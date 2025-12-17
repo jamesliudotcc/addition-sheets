@@ -24,7 +24,10 @@ a:hover {
 
 body {
 	margin: 0;
+	padding: 0;
+	font-size: 10pt;
 	min-height: auto;
+	display: block;
 }
 
 button {
@@ -46,33 +49,53 @@ main {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(4, 1fr);
-	width: 100%;
+	column-gap: 0.25in;
+	row-gap: 0;
+	width: 7.5in;
+	height: 10in;
 	margin: 0 auto;
+	padding: 0;
+	justify-content: stretch;
+	align-content: stretch;
 }
 
 .problem table {
-	width: 100%;
+	width: 95%;
 	border-collapse: collapse;
+	margin: 0 auto;
 }
 
 .problem table td {
-	border: 1px dotted #666;
+	border: 1px dotted #000;
 	text-align: center;
-	padding: 0.5rem;
-	font-size: 1.2rem;
-	height: 3rem;
+	padding: 0.08in;
+	font-size: 12pt;
+	height: 0.42in;
+	width: 0.42in;
+	vertical-align: middle;
 }
 
 .problem table tr:nth-child(2) {
-	border-bottom: 1px solid #666;
+	border-bottom: 1px solid #000;
 }
 
 .problem table tr:nth-child(2) td {
-	border-bottom: 1px solid #666;
+	border-bottom: 1px solid #000;
 }
+
 button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
+}
+
+nav {
+	display: none;
+}
+
+#root {
+	margin: 0;
+	padding: 0;
+	max-width: none;
 }
 
 .sr-only {
@@ -89,15 +112,36 @@ button:focus-visible {
 
 @media screen {
 	body {
-		display: flex;
-		place-items: center;
-		min-width: 320px;
-		min-height: 100vh;
+		font-size: 16px;
 	}
 
 	main {
-		gap: 1rem;
+		width: 100%;
 		max-width: 1200px;
+		height: auto;
+		gap: 1rem;
+	}
+
+	.problem table {
+		width: 100%;
+		margin: 0;
+	}
+
+	.problem table td {
+		border: 1px dotted #666;
+		padding: 0.5rem;
+		font-size: 1.2rem;
+		height: 3rem;
+		width: auto;
+		vertical-align: baseline;
+	}
+
+	.problem table tr:nth-child(2) {
+		border-bottom: 1px solid #666;
+	}
+
+	.problem table tr:nth-child(2) td {
+		border-bottom: 1px solid #666;
 	}
 }
 
@@ -105,57 +149,6 @@ button:focus-visible {
 	@page {
 		size: letter;
 		margin: 0.5in;
-	}
-
-	body {
-		margin: 0;
-		padding: 0;
-		font-size: 10pt;
-		min-height: auto;
-		display: block;
-	}
-
-	#root {
-		margin: 0;
-		padding: 0;
-		max-width: none;
-	}
-
-	nav {
-		display: none !important;
-		visibility: hidden;
-		height: 0;
-		overflow: hidden;
-	}
-
-	main {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: repeat(4, 1fr);
-		column-gap: 0.25in;
-		row-gap: 0;
-		width: 7.5in;
-		height: 10in;
-		margin: 0 auto;
-		padding: 0;
-		justify-content: stretch;
-		align-content: stretch;
-	}
-
-	.problem table {
-		width: 95%;
-		border-collapse: collapse;
-		margin: 0 auto;
-	}
-
-	.problem table td {
-		border: 1px dotted #000;
-		padding: 0.08in;
-		font-size: 12pt;
-		height: 0.42in;
-		width: 0.42in;
-		text-align: center;
-		vertical-align: middle;
 	}
 }
 

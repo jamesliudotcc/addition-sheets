@@ -24,10 +24,7 @@ a:hover {
 
 body {
 	margin: 0;
-	display: flex;
-	place-items: center;
-	min-width: 320px;
-	min-height: 100vh;
+	min-height: auto;
 }
 
 button {
@@ -49,9 +46,7 @@ main {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(4, 1fr);
-	gap: 1rem;
 	width: 100%;
-	max-width: 1200px;
 	margin: 0 auto;
 }
 
@@ -92,10 +87,24 @@ button:focus-visible {
 	border: 0;
 }
 
+@media screen {
+	body {
+		display: flex;
+		place-items: center;
+		min-width: 320px;
+		min-height: 100vh;
+	}
+
+	main {
+		gap: 1rem;
+		max-width: 1200px;
+	}
+}
+
 @media print {
 	@page {
 		size: letter;
-		margin: 0.5cm;
+		margin: 0.5in;
 	}
 
 	body {
@@ -123,14 +132,13 @@ button:focus-visible {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows: repeat(4, 1fr);
-		column-gap: 0.5cm;
+		column-gap: 0.25in;
 		row-gap: 0;
-		width: 90vw;
-		max-width: 90vw;
-		height: calc(100vh - 3cm);
+		width: 7.5in;
+		height: 10in;
 		margin: 0 auto;
 		padding: 0;
-		justify-content: center;
+		justify-content: stretch;
 		align-content: stretch;
 	}
 
@@ -142,10 +150,10 @@ button:focus-visible {
 
 	.problem table td {
 		border: 1px dotted #000;
-		padding: 0.1cm;
+		padding: 0.08in;
 		font-size: 12pt;
-		height: 1cm;
-		width: 1cm;
+		height: 0.42in;
+		width: 0.42in;
 		text-align: center;
 		vertical-align: middle;
 	}
